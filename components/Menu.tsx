@@ -3,14 +3,15 @@ import { Home, Settings, Users, BarChart3, LogOut, ArrowLeft } from 'lucide-reac
 
 interface MenuProps {
   onBack: () => void;
+  onNavigate: (view: 'userManagement' | 'dashboard' | 'analytics' | 'settings') => void;
 }
 
-const Menu: React.FC<MenuProps> = ({ onBack }) => {
+const Menu: React.FC<MenuProps> = ({ onBack, onNavigate }) => {
   const menuItems = [
-    { icon: <Home className="w-6 h-6" />, label: 'Dashboard', description: 'Overview of system metrics' },
-    { icon: <Users className="w-6 h-6" />, label: 'User Management', description: 'Manage access and roles' },
-    { icon: <BarChart3 className="w-6 h-6" />, label: 'Analytics', description: 'View performance data' },
-    { icon: <Settings className="w-6 h-6" />, label: 'Settings', description: 'System configuration' },
+    { id: 'dashboard', icon: <Home className="w-6 h-6" />, label: 'Dashboard', description: 'Overview of system metrics' },
+    { id: 'userManagement', icon: <Users className="w-6 h-6" />, label: 'User Management', description: 'Manage access and roles' },
+    { id: 'analytics', icon: <BarChart3 className="w-6 h-6" />, label: 'Analytics', description: 'View performance data' },
+    { id: 'settings', icon: <Settings className="w-6 h-6" />, label: 'Settings', description: 'System configuration' },
   ];
 
   return (
@@ -40,6 +41,11 @@ const Menu: React.FC<MenuProps> = ({ onBack }) => {
           {menuItems.map((item, index) => (
             <button
               key={index}
+              onClick={() => {
+                if (item.id === 'userManagement' || item.id === 'dashboard' || item.id === 'analytics' || item.id === 'settings') {
+                  onNavigate(item.id as any);
+                }
+              }}
               className="group flex flex-col p-6 bg-slate-900/50 hover:bg-slate-900 border border-slate-800 hover:border-brand-500/30 rounded-2xl transition-all duration-300 text-left"
             >
               <div className="flex items-start justify-between w-full mb-4">
