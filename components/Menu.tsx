@@ -3,7 +3,7 @@ import { Home, Settings, Users, BarChart3, LogOut, ArrowLeft } from 'lucide-reac
 
 interface MenuProps {
   onBack: () => void;
-  onNavigate: (view: 'userManagement' | 'dashboard' | 'analytics' | 'settings') => void;
+  onNavigate: (view: 'userManagement' | 'dashboard' | 'analytics' | 'settings' | 'admin') => void;
 }
 
 const Menu: React.FC<MenuProps> = ({ onBack, onNavigate }) => {
@@ -32,9 +32,12 @@ const Menu: React.FC<MenuProps> = ({ onBack, onNavigate }) => {
               <p className="text-slate-500 text-sm font-medium tracking-wide">startup001</p>
             </div>
           </div>
-          <div className="h-10 w-10 rounded-full bg-slate-800 flex items-center justify-center border border-slate-700">
-            <span className="font-mono text-xs font-bold text-brand-400">ADM</span>
-          </div>
+          <button 
+            onClick={() => onNavigate('admin')}
+            className="h-10 px-3 rounded-full bg-slate-800 flex items-center justify-center border border-slate-700 hover:bg-slate-700 hover:border-brand-500/50 transition-all cursor-pointer group"
+          >
+            <span className="font-mono text-xs font-bold text-brand-400 group-hover:text-brand-300">ADMIN</span>
+          </button>
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -42,9 +45,7 @@ const Menu: React.FC<MenuProps> = ({ onBack, onNavigate }) => {
             <button
               key={index}
               onClick={() => {
-                if (item.id === 'userManagement' || item.id === 'dashboard' || item.id === 'analytics' || item.id === 'settings') {
-                  onNavigate(item.id as any);
-                }
+                onNavigate(item.id as any);
               }}
               className="group flex flex-col p-6 bg-slate-900/50 hover:bg-slate-900 border border-slate-800 hover:border-brand-500/30 rounded-2xl transition-all duration-300 text-left"
             >

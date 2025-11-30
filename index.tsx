@@ -5,9 +5,10 @@ import UserManagement from './components/UserManagement';
 import AdminDashboard from './components/AdminDashboard';
 import Analytics from './components/Analytics';
 import Settings from './components/Settings';
+import Admin from './components/Admin';
 
 const App = () => {
-  const [currentView, setCurrentView] = useState<'splash' | 'menu' | 'userManagement' | 'dashboard' | 'analytics' | 'settings'>('splash');
+  const [currentView, setCurrentView] = useState<'splash' | 'menu' | 'userManagement' | 'dashboard' | 'analytics' | 'settings' | 'admin'>('splash');
 
   // Simple fade-in wrapper component
   const PageTransition = ({ children }: { children: React.ReactNode }) => (
@@ -55,6 +56,14 @@ const App = () => {
     return (
       <PageTransition>
         <Settings onBack={() => setCurrentView('menu')} />
+      </PageTransition>
+    );
+  }
+
+  if (currentView === 'admin') {
+    return (
+      <PageTransition>
+        <Admin onBack={() => setCurrentView('menu')} />
       </PageTransition>
     );
   }
