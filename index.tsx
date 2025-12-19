@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import { StrictMode, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import Menu from './components/Menu';
@@ -6,6 +7,12 @@ import AdminDashboard from './components/AdminDashboard';
 import Analytics from './components/Analytics';
 import Settings from './components/Settings';
 import Admin from './components/Admin';
+=======
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './src/index.css';
+import App from './App';
+>>>>>>> Stashed changes
 
 const App = () => {
   const [currentView, setCurrentView] = useState<'splash' | 'menu' | 'userManagement' | 'dashboard' | 'analytics' | 'settings' | 'admin'>('splash');
